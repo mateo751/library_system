@@ -1,3 +1,4 @@
+package com.libary.system.librarysystem.dto;
 public class LibroDTO{
     private Long id;
     private String titulo_lib;
