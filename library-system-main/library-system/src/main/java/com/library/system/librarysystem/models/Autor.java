@@ -10,19 +10,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="TBL_LOGINS")
+@Table(name="TBL_AUTOR")
 @Getter
 @Setter
-public class Login {
+
+public class Autor {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name ="USUARIO_LOG")
-    private String usuario_log;
+    @Column(name ="NOMBRE_AUT")
+    private String nombre_aut;
 
-    @Column(name ="CONTRASENA_LOG")
-    private String contrasena_log;
-    
-    
+    @Column(name ="DESCRIPCION_AUT")
+    private String descripcion_aut;
 }

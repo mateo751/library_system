@@ -1,5 +1,6 @@
 package com.library.system.librarysystem.models;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import lombok.Setter;
 @Table(name="TBL_USUARIOS")
 @Getter
 @Setter
+
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,5 +37,17 @@ public class Usuario {
 
     @Column(name ="FACULTAD_USR")
     private String facultad_usr;
+
+    @Column(name ="PROFECION_USR")
+    private String prodecion_usr;
+
+    @Column(name ="CARGO_USR")
+    private String cargo_usr;
+
+    @Column(name ="LOGIN_URS")
+    private String login_usr;
+
+    @Column(name ="CONTRASENA_USR")
+    private String contrasena_usr;
     
 }
