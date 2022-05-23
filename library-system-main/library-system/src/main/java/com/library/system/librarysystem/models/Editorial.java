@@ -10,19 +10,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="TBL_SALAS")
+@Table(name="TBL_EDITORIAL")
 @Getter
 @Setter
 
-public class Sala {
+public class Editorial {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name ="ESPECIALIDAD_SAL")
-    private String especialidad_sal;
+    @Column(name ="NOMBRE_EDI")
+    private String nombre_edi;
 
-    @Column(name ="CANTIDAD_SAL")
-    private int cantidad_sal;
-    
+    @Column(name ="DESCRIPCION_EDI")
+    private String descripcion_edi;
 }

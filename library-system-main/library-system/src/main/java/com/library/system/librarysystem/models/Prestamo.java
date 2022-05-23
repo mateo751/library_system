@@ -33,6 +33,9 @@ public class Prestamo {
     @Column(name ="DIA_PRE")
     private int dia_pre;
 
+    @Column(name ="CANTIDAD_PRE")
+    private int cantidad_pre;
+
     @Column(name ="OBSERVACION_PRE")
     private String observacion_pre;
 
@@ -41,7 +44,7 @@ public class Prestamo {
     private Libro libro;
 
     @ManyToOne
-    @JoinColumn(name="USUARIO_ID", nullable=false)
-    private Usuario usuario;
+    @JoinColumn(name="ESTUDIANTE_ID", nullable=false)
+    private Estudiante estudiante;
     
 }
