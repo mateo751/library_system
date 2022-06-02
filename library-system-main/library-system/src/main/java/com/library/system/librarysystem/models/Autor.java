@@ -25,4 +25,8 @@ public class Autor {
 
     @Column(name ="DESCRIPCION_AUT")
     private String descripcion_aut;
+<<<<<<< Updated upstream:library-system-main/library-system/src/main/java/com/library/system/librarysystem/models/Autor.java
 }
+=======
+}
+>>>>>>> Stashed changes:library-system-main/library-system/src/main/java/com/library/system/librarysystem/models/Sala.java

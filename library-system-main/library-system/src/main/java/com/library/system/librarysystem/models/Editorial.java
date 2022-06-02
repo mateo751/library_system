@@ -24,4 +24,8 @@ public class Editorial {
 
     @Column(name ="DESCRIPCION_EDI")
     private String descripcion_edi;
+<<<<<<< Updated upstream:library-system-main/library-system/src/main/java/com/library/system/librarysystem/models/Editorial.java
 }
+=======
+}
+>>>>>>> Stashed changes:library-system-main/library-system/src/main/java/com/library/system/librarysystem/models/Login.java
