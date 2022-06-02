@@ -36,12 +36,12 @@ public class AutorServiceImpl implements AutorService{
     @Override
     @Transactional(readOnly = true)
     public DTOAutor retrieve(Long id) throws Exception {
-        Optional<Autor> autor = autorRepository.findById(id);
-        if(autor.isPresent()){
+        Optional<Autor> exam = autorRepository.findById(id);
+        if(exam.isPresent()){
             throw new Exception("Exan not found");
         }
         //.orElseThrow(()-> new Exception("Exam not found"));
-        return modelMapper.map(autor.get(), DTOAutor.class);
+        return modelMapper.map(exam.get(), DTOAutor.class);
     }
 
     @Override

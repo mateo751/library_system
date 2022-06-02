@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class EditorialServiceImpl implements EditorialService{
-    
     final ModelMapper modelMapper;
     final EditorialRepository editorialRepository;
 
@@ -65,8 +64,4 @@ public class EditorialServiceImpl implements EditorialService{
         editorialRepository.deleteById(editorial.getId());
         
     }
-
-   
-
-  
 }

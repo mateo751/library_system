@@ -1,7 +1,10 @@
 package com.library.system.librarysystem.services.impl;
 
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.library.system.librarysystem.dto.DTOLibro;
 import com.library.system.librarysystem.dto.NewLibroDTO;
@@ -20,6 +23,7 @@ public class LibroServiceImpl implements LibroService {
     }
 
     @Override
+    @Transactional
     public DTOLibro create(NewLibroDTO DTOLibro) {
         Libro libro = modelMapper.map(DTOLibro, Libro.class);
         libroRepository.save(libro);
@@ -28,20 +32,34 @@ public class LibroServiceImpl implements LibroService {
     }
 
     @Override
+    @Transactional
     public DTOLibro retrieve(Long id) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        Optional<Libro> libro = libroRepository.findById(id);
+        if(libro.isPresent()){
+            throw new Exception("Exan not found");
+        }
+        //.orElseThrow(()-> new Exception("Exam not found"));
+        return modelMapper.map(libro.get(), DTOLibro.class);
     }
 
     @Override
-    public DTOLibro update(DTOLibro DTOLibro, Long id) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+    @Transactional
+    public DTOLibro update(DTOLibro DTOlibro, Long id) throws Exception {
+        Libro libro = libroRepository.findById(id)
+        .orElseThrow(()-> new Exception("Exam not found"));
+
+        libro.setId(id);
+        libro = modelMapper.map(DTOlibro, Libro.class);
+        libroRepository.save(libro);       
+
+        return modelMapper.map(libro, DTOLibro.class);
     }
 
     @Override
+    @Transactional
     public void delete(Long id) throws Exception {
-        // TODO Auto-generated method stub
-        
+        Libro libro = libroRepository.findById(id)
+        .orElseThrow(()-> new Exception("Exam not found"));        
+        libroRepository.deleteById(libro.getId());
     }
 }

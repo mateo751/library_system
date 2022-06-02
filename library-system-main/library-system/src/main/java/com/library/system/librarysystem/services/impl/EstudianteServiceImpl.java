@@ -2,11 +2,10 @@ package com.library.system.librarysystem.services.impl;
 
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.library.system.librarysystem.dto.DTOEstudiante;
 import com.library.system.librarysystem.dto.NewEstudianteDTO;
@@ -66,6 +65,4 @@ public class EstudianteServiceImpl implements EstudianteService {
         estudianteRepository.deleteById(estudiante.getId());
         
     }
-    
-
 }

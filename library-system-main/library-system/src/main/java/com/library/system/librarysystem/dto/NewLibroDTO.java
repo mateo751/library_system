@@ -3,6 +3,14 @@ package com.library.system.librarysystem.dto;
 import com.library.system.librarysystem.models.Autor;
 import com.library.system.librarysystem.models.Editorial;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+
 public class NewLibroDTO {
     private String titulo_lib;
     private int cantidad_disp_lib;
