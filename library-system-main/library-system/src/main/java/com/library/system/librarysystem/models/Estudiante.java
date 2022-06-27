@@ -20,23 +20,23 @@ public class Estudiante {
     private Long id;
 
     @Column(name ="CODIGO_EST")
-    private String codigo_est;
+    private String codigoEst;
 
     @Column(name ="NOMBRE_EST")
-    private String nombre_est;
+    private String nombreEst;
 
     @Column(name ="APELLIDO_EST")
-    private String apellido_est;
+    private String apellidoEst;
 
     @Column(name ="DIRECCION_EST")
-    private String direccion_est;
+    private String direccionEst;
 
     @Column(name ="TELEFONO_EST")
-    private int telefono_est;
+    private int telefonoEst;
 
     @Column(name ="EMAIL_EST")
-    private String email_est;
+    private String emailEst;
 
     @Column(name ="FACULTAD_EST")
-    private String facultad_est;
+    private String facultadEst;
 }

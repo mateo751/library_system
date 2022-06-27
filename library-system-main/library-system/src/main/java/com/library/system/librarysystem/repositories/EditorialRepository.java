@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface  EditorialRepository extends JpaRepository<Editorial,Long> {
-    public List<Editorial> findByNombre(String name);
+    public List<Editorial> findByNombreEdi(String name);
 }

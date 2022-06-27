@@ -21,33 +21,33 @@ public class Usuario {
     private Long id;
 
     @Column(name ="NOMBRE_USR")
-    private String nombre_usr;
+    private String nombreUsr;
 
     @Column(name ="APELLIDO_USR")
-    private String apellido_usr;
+    private String apellidoUsr;
 
     @Column(name ="DIRECCION_USR")
-    private String direccion_usr;
+    private String direccionUsr;
 
     @Column(name ="TELEFONO_USR")
-    private int telefono_usr;
+    private int telefonoUsr;
 
     @Column(name ="EMAIL_USR")
-    private String email_usr;
+    private String emailUsr;
 
     @Column(name ="FACULTAD_USR")
-    private String facultad_usr;
+    private String facultadUsr;
 
     @Column(name ="PROFECION_USR")
-    private String prodecion_usr;
+    private String prodecionUsr;
 
     @Column(name ="CARGO_USR")
-    private String cargo_usr;
+    private String cargoUsr;
 
     @Column(name ="LOGIN_URS")
-    private String login_usr;
+    private String loginUsr;
 
     @Column(name ="CONTRASENA_USR")
-    private String contrasena_usr;
+    private String contrasenaUsr;
     
 }

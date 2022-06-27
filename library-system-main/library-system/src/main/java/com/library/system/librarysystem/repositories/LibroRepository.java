@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface  LibroRepository extends JpaRepository<Libro,Long> {
-    public List<Libro> findByNombre(String name);
+    public List<Libro> findByTituloLib(String name);
 }

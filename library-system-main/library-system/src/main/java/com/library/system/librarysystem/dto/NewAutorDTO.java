@@ -10,9 +10,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 
-public class NewAutorDTO {
+public class  NewAutorDTO {
     @NotNull(message = "El nombre no puede ser nulo")
-    private String nombre_aut;
+    private String nombreAut;
     @NotNull(message = "La descripcion no puede ser nula")
-    private String descripcion_aut;
+    private String descripcionAut;
 }

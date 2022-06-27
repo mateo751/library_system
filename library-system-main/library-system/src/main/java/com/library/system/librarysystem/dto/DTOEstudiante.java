@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 
-public class DTOEstudiante {
+public class DTOEstudiante extends NewEstudianteDTO {
     private Long id;
 }

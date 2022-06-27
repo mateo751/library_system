@@ -12,23 +12,23 @@ import lombok.Setter;
 
 public class NewUsuarioDTO {
     @NotNull(message = "Campo vacio")
-    private String nombre_usr;
+    private String nombreUsr;
     @NotNull(message = "Campo vacio")
-    private String apellido_usr;
+    private String apellidoUsr;
     @NotNull(message = "Campo vacio")
-    private String direccion_usr;
+    private String direccionUsr;
     @NotNull(message = "Campo vacio")
-    private int telefono_usr;
+    private int telefonoUsr;
     @NotNull(message = "Campo vacio")
-    private String email_usr;
+    private String emailUsr;
     @NotNull(message = "Campo vacio")
-    private String facultad_usr;
+    private String facultadUsr;
     @NotNull(message = "Campo vacio")
-    private String prodecion_usr;
+    private String prodecionUsr;
     @NotNull(message = "Campo vacio")
-    private String cargo_usr;
+    private String cargoUsr;
     @NotNull(message = "Campo vacio")
-    private String login_usr;
+    private String loginUsr;
     @NotNull(message = "Campo vacio")
-    private String contrasena_usr;
+    private String contrasenaUsr;
 }

@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 
-public class DTOLibro {
+public class DTOLibro extends NewLibroDTO{
     private Long id;
 }

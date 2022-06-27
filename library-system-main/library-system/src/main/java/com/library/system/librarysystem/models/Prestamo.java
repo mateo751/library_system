@@ -25,19 +25,19 @@ public class Prestamo {
     private Long id;
 
     @Column(name ="FECHA_PRE")
-    private Date fecha_pre;
+    private Date fechaPre;
 
     @Column(name ="FECHA_ENTREGA_PRE")
-    private Date fecha_ent_pre;
+    private Date fechaEntPre;
 
     @Column(name ="DIA_PRE")
-    private int dia_pre;
+    private int diaPre;
 
     @Column(name ="CANTIDAD_PRE")
-    private int cantidad_pre;
+    private int cantidadPre;
 
     @Column(name ="OBSERVACION_PRE")
-    private String observacion_pre;
+    private String observacionPre;
 
     @ManyToOne
     @JoinColumn(name="LIBRO_ID", nullable=false)

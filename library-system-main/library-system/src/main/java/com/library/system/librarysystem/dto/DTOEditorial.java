@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 
-public class DTOEditorial {
+public class DTOEditorial extends NewEditorialDTO {
     private Long id;
 }

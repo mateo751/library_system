@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 
-public class DTOPrestamo {
+public class DTOPrestamo extends NewPrestamoDTO {
     private Long id;
 }

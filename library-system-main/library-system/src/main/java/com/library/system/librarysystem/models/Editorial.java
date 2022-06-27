@@ -20,8 +20,8 @@ public class Editorial {
     private Long id;
 
     @Column(name ="NOMBRE_EDI")
-    private String nombre_edi;
+    private String nombreEdi;
 
     @Column(name ="DESCRIPCION_EDI")
-    private String descripcion_edi;
+    private String descripcionEdi;
 }

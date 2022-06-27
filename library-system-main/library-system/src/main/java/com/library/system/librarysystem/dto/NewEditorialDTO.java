@@ -12,7 +12,7 @@ import lombok.Setter;
 
 public class NewEditorialDTO {
     @NotNull(message = "La descripcion no puede ser nula")
-    private String nombre_edi;
+    private String nombreEdi;
     @NotNull(message = "La descripcion no puede ser nula")
-    private String descripcion_edi;
+    private String descripcionEdi;
 }

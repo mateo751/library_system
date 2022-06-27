@@ -15,20 +15,20 @@ import lombok.Setter;
 
 public class NewLibroDTO {
     @NotNull(message = "El titulo no puede estar vacio")
-    private String titulo_lib;
+    private String tituloLib;
     @NotNull(message = "La cantidad disponible no puede estar vacio")
-    private int cantidad_disp_lib;
+    private int cantidad_dispLib;
     @NotNull(message = "El año no puede estar vacio")
-    private String year_edi_lib;
+    private String year_ediLib;
     @NotNull(message = "falta numero de paginas")
-    private int numero_pag_lib;
+    private int numero_pagLib;
     @NotNull(message = "El formato no puede estar vacio")
-    private String formato_lib;
+    private String formatoLib;
     @NotNull(message = "El estante no puede estar vacio")
-    private int estante_lib;
+    private int estanteLib;
     @NotNull(message = "fata lugar de procedencia")
-    private String procedencia_lib;
-    private String descripcion_lib;
+    private String procedenciaLib;
+    private String descripcionLib;
     @NotNull(message = "El autor no puede estar vacio")
     private Autor autor;
     private Editorial editorial;

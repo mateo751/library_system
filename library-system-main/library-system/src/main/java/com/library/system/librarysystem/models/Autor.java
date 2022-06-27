@@ -20,9 +20,9 @@ public class Autor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name ="NOMBRE_AUT")
-    private String nombre_aut;
+    @Column(name ="NOMBREAUT")
+    private String nombreAut;
 
-    @Column(name ="DESCRIPCION_AUT")
-    private String descripcion_aut;
+    @Column(name ="DESCRIPCIONAUT")
+    private String descripcionAut;
 }

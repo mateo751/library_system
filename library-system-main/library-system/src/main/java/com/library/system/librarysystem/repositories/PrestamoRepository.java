@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface  PrestamoRepository extends JpaRepository<Prestamo,Long> {
-    public List<Prestamo> findByNombre(String name);
+    public List<Prestamo> findByFechaPre(String name);
 }

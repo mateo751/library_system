@@ -12,17 +12,17 @@ import lombok.Setter;
 
 public class NewEstudianteDTO {
     @NotNull(message = "La codigo no puede ser nula")
-    private String codigo_est;
+    private String codigoEst;
     @NotNull(message = "EL nombre no puede ser nula")
-    private String nombre_est;
+    private String nombreEst;
     @NotNull(message = "El apellido no puede ser nula")
-    private String apellido_est;
+    private String apellidoEst;
     @NotNull(message = "La direccion no puede estar vacio")
-    private String direccion_est;
+    private String direccionEst;
     @NotNull(message = "El telefono no puede estar vacio")
-    private int telefono_est;
+    private int telefonoEst;
     @NotNull(message = "El email no puede estar vacio")
-    private String email_est;
+    private String emailEst;
     @NotNull(message = "La facultad no puede estar vacio")
-    private String facultad_est;
+    private String facultadEst;
 }

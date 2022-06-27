@@ -23,35 +23,35 @@ public class Libro {
     private Long id;
 
     @Column(name ="TITULO_LIB",nullable = false )
-    private String titulo_lib;
+    private String tituloLib;
 
     @Column(name ="CANTIDAD_DISP_LIB" )
-    private int cantidad_disp_lib;
+    private int cantidadLib;
 
     @Column(name ="YEAR_EDI_LIB" )
-    private String year_edi_lib;
+    private String yearLib;
 
     @Column(name ="NUMERO_PAG_LIB")
-    private int numero_pag_lib;
+    private int numeroLib;
 
     @Column(name ="FORMATO_LIB")
-    private String formato_lib;
+    private String formatoLib;
 
     @Column(name ="ESTANTE_LIB" )
-    private int estante_lib;
+    private int estanteLib;
 
     @Column(name ="PROCEDENCIA_LIB" )
-    private String procedencia_lib;
+    private String procedenciaLib;
 
     @Column(name ="DESCRIPCION_LIB" )
-    private String descripcion_lib;
+    private String descripcionLib;
 
     @ManyToOne
     @JoinColumn(name="AUTOR_ID", nullable=false)
-    private Autor autor;
+    private Autor autorLib;
 
     @ManyToOne
     @JoinColumn(name="EDITORIAL_ID", nullable=false)
-    private Editorial editorial;
+    private Editorial editorialLib;
 
 }
