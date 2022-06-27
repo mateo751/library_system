@@ -9,6 +9,5 @@ import lombok.Setter;
 @NoArgsConstructor
 
 public class DTOAutor {
-    private String nombre_aut;
-    private String descripcion_aut;
+    private Long id;
 }

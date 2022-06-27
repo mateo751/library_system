@@ -1,5 +1,7 @@
 package com.library.system.librarysystem.services;
 
+import java.util.List;
+
 import com.library.system.librarysystem.dto.DTOUsuario;
 import com.library.system.librarysystem.dto.NewUsuarioDTO;
 
@@ -8,4 +10,6 @@ public interface UsuarioService {
     public DTOUsuario retrieve(Long id) throws Exception;
     public DTOUsuario update(DTOUsuario DTOUsuario, Long id) throws Exception;
     public void delete(Long id) throws Exception;
+
+    public List<DTOUsuario> list();
 }

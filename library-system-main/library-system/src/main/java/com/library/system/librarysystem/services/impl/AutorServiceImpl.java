@@ -1,9 +1,11 @@
 package com.library.system.librarysystem.services.impl;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.library.system.librarysystem.dto.DTOAutor;
 import com.library.system.librarysystem.dto.NewAutorDTO;
+import com.library.system.librarysystem.exepciones.ResourceNotFoundException;
 import com.library.system.librarysystem.models.Autor;
 import com.library.system.librarysystem.repositories.AutorRepository;
 import com.library.system.librarysystem.services.AutorService;
@@ -35,20 +37,17 @@ public class AutorServiceImpl implements AutorService{
 
     @Override
     @Transactional(readOnly = true)
-    public DTOAutor retrieve(Long id) throws Exception {
-        Optional<Autor> exam = autorRepository.findById(id);
-        if(exam.isPresent()){
-            throw new Exception("Exan not found");
-        }
-        //.orElseThrow(()-> new Exception("Exam not found"));
-        return modelMapper.map(exam.get(), DTOAutor.class);
+    public DTOAutor retrieve(Long id){
+        Autor autor = autorRepository.findById(id)
+        .orElseThrow(()-> new ResourceNotFoundException("Autor not found"));
+        return modelMapper.map(autor, DTOAutor.class);
     }
 
     @Override
     @Transactional
-    public DTOAutor update(DTOAutor DTOautor, Long id) throws Exception {
+    public DTOAutor update(DTOAutor DTOautor, Long id)  {
         Autor autor = autorRepository.findById(id)
-                .orElseThrow(()-> new Exception("Exam not found"));
+                .orElseThrow(()-> new ResourceNotFoundException("Autor not found"));
         
         autor.setId(id);
         autor = modelMapper.map(DTOautor, Autor.class);
@@ -59,10 +58,18 @@ public class AutorServiceImpl implements AutorService{
 
     @Override
     @Transactional
-    public void delete(Long id) throws Exception {
+    public void delete(Long id)  {
         Autor autor = autorRepository.findById(id)
-                .orElseThrow(()-> new Exception("Exam not found"));        
+                .orElseThrow(()-> new ResourceNotFoundException("Exam not found"));        
         autorRepository.deleteById(autor.getId());        
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<DTOAutor> list() {
+        List<Autor> autores = autorRepository.findAll();
+        return autores.stream().map(autor -> modelMapper.map(autor, DTOAutor.class))
+            .collect(Collectors.toList());
     }
 
 }

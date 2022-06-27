@@ -1,6 +1,7 @@
 package com.library.system.librarysystem.services.impl;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.library.system.librarysystem.dto.DTOEstudiante;
 import com.library.system.librarysystem.dto.NewEstudianteDTO;
+import com.library.system.librarysystem.exepciones.ResourceNotFoundException;
 import com.library.system.librarysystem.models.Estudiante;
 import com.library.system.librarysystem.repositories.EstudianteRepository;
 import com.library.system.librarysystem.services.EstudianteService;
@@ -34,21 +36,18 @@ public class EstudianteServiceImpl implements EstudianteService {
     }
 
     @Override
-    @Transactional
-    public DTOEstudiante retrieve(Long id) throws Exception {
-        Optional<Estudiante> estudiante = estudianteRepository.findById(id);
-        if(estudiante.isPresent()){
-            throw new Exception("Exan not found");
-        }
-        //.orElseThrow(()-> new Exception("Exam not found"));
-        return modelMapper.map(estudiante.get(), DTOEstudiante.class); 
+    @Transactional(readOnly = true)
+    public DTOEstudiante retrieve(Long id){
+        Estudiante estudiante = estudianteRepository.findById(id)
+        .orElseThrow(()-> new ResourceNotFoundException("Estudiante not found"));
+        return modelMapper.map(estudiante, DTOEstudiante.class);
     }
 
     @Override
     @Transactional
-    public DTOEstudiante update(DTOEstudiante DTOestudiante, Long id) throws Exception {
+    public DTOEstudiante update(DTOEstudiante DTOestudiante, Long id)  {
         Estudiante estudiante = estudianteRepository.findById(id)
-                .orElseThrow(()-> new Exception("Exam not found"));
+                .orElseThrow(()-> new ResourceNotFoundException("Exam not found"));
         
         estudiante.setId(id);
         estudiante = modelMapper.map(DTOestudiante, Estudiante.class);
@@ -59,10 +58,18 @@ public class EstudianteServiceImpl implements EstudianteService {
 
     @Override
     @Transactional
-    public void delete(Long id) throws Exception {
+    public void delete(Long id) {
         Estudiante estudiante = estudianteRepository.findById(id)
-        .orElseThrow(()-> new Exception("Exam not found"));        
+        .orElseThrow(()-> new ResourceNotFoundException("Exam not found"));        
         estudianteRepository.deleteById(estudiante.getId());
         
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<DTOEstudiante> list() {
+        List<Estudiante> estudiantes = estudianteRepository.findAll();
+        return estudiantes.stream().map(estudiante -> modelMapper.map(estudiante, DTOEstudiante.class))
+            .collect(Collectors.toList());
     }
 }

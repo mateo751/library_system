@@ -9,6 +9,5 @@ import lombok.Setter;
 @NoArgsConstructor
 
 public class DTOEditorial {
-    private String nombre_edi;
-    private String descripcion_edi;
+    private Long id;
 }
