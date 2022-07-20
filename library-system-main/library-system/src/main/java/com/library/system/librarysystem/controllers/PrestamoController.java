@@ -1,12 +1,11 @@
 package com.library.system.librarysystem.controllers;
 
 import java.util.List;
-
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,12 +19,12 @@ import com.library.system.librarysystem.dto.DTOPrestamo;
 import com.library.system.librarysystem.dto.NewPrestamoDTO;
 import com.library.system.librarysystem.services.PrestamoService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/prestamo")
 public class PrestamoController {
     private final PrestamoService service;
 
-    @Autowired
     public PrestamoController(PrestamoService srv){
         this.service =srv;
     }

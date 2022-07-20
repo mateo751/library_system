@@ -8,9 +8,10 @@ import com.library.system.librarysystem.dto.NewAutorDTO;
 public interface AutorService {
 
     public DTOAutor create(NewAutorDTO DTOAutor);
-    public DTOAutor retrieve(Long id) throws Exception;
-    public DTOAutor update(DTOAutor DTOAutor, Long id) throws Exception;
-    public void delete(Long id) throws Exception;
-
+    public DTOAutor retrieve(Long id);
+    public DTOAutor update(DTOAutor DTOAutor, Long id);
+    public void delete(Long id);
+    public long count();
+    
     public List<DTOAutor> list();
 }

@@ -1,12 +1,11 @@
 package com.library.system.librarysystem.controllers;
 
 import java.util.List;
-
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,12 +19,12 @@ import com.library.system.librarysystem.dto.DTOEditorial;
 import com.library.system.librarysystem.dto.NewEditorialDTO;
 import com.library.system.librarysystem.services.EditorialService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/editorial")
 public class EditorialController {
     private final EditorialService service;
 
-    @Autowired
     public EditorialController(EditorialService srv){
         this.service =srv;
     }

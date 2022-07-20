@@ -20,7 +20,7 @@ public class NewEstudianteDTO {
     @NotNull(message = "La direccion no puede estar vacio")
     private String direccionEst;
     @NotNull(message = "El telefono no puede estar vacio")
-    private int telefonoEst;
+    private String telefonoEst;
     @NotNull(message = "El email no puede estar vacio")
     private String emailEst;
     @NotNull(message = "La facultad no puede estar vacio")

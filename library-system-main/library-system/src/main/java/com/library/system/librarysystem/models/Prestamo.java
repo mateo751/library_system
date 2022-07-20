@@ -1,5 +1,6 @@
 package com.library.system.librarysystem.models;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -39,6 +42,29 @@ public class Prestamo {
     @Column(name ="OBSERVACION_PRE")
     private String observacionPre;
 
+    @Column(name = "CREATED_DATE")    
+    private Calendar createdDate;
+    @Column(name = "CREATED_BY")    
+    private String createdBy;  
+
+
+    @Column(name = "UPDATED_DATE")    
+    private Calendar updatedDate;
+    @Column(name = "UPDATED_BY")    
+    private String updatedBy;  
+
+    @PrePersist
+    public void prePersist(){
+        createdDate = Calendar.getInstance();
+        createdBy = "user1";
+    }
+
+    @PreUpdate
+    public void preUpdate(){
+        updatedDate = Calendar.getInstance();
+        updatedBy = "user2";
+    }
+
     @ManyToOne
     @JoinColumn(name="LIBRO_ID", nullable=false)
     private Libro libro;
@@ -46,5 +72,9 @@ public class Prestamo {
     @ManyToOne
     @JoinColumn(name="ESTUDIANTE_ID", nullable=false)
     private Estudiante estudiante;
+
+    @ManyToOne
+    @JoinColumn(name="USUARIO_ID", nullable=false)
+    private Usuario usuario;
     
 }

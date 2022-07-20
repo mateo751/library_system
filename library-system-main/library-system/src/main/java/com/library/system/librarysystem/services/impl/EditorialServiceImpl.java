@@ -20,7 +20,6 @@ public class EditorialServiceImpl implements EditorialService{
     final ModelMapper modelMapper;
     final EditorialRepository editorialRepository;
 
-    @Autowired
     public EditorialServiceImpl(@Autowired EditorialRepository repository, ModelMapper mapper){
         this.editorialRepository = repository;
         this.modelMapper = mapper;
