@@ -19,7 +19,7 @@ public class NewPrestamoDTO {
     @NotNull(message = "la fecha del prestamo no puede estar vacio")
     private Date fechaPre;
     private Date fechaEntPre;
-    @NotNull(message = "El del prestamo no puede estar vacio")
+    @NotNull(message = "El dia del prestamo no puede estar vacio")
     private int diaPre;
     @NotNull(message = "la cantidad no puede estar vacio")
     private int cantidadPre;

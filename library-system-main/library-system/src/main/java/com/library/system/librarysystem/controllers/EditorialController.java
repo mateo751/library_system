@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.library.system.librarysystem.dto.DTOEditorial;
+import com.library.system.librarysystem.dto.EditorialListDTO;
 import com.library.system.librarysystem.dto.NewEditorialDTO;
 import com.library.system.librarysystem.services.EditorialService;
 
@@ -30,34 +32,48 @@ public class EditorialController {
         this.service =srv;
     }
     
+     /* ================ CREATE ================ */
     @PostMapping()
-    public ResponseEntity<DTOEditorial> create(@Valid @RequestBody NewEditorialDTO DTOEditorial){
-        DTOEditorial result = service.create(DTOEditorial);
+    public ResponseEntity<DTOEditorial> create(@Valid @RequestBody NewEditorialDTO dtoEditorial){
+        DTOEditorial result = service.create(dtoEditorial);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);        
     }
 
-
+    /* ================ RETRIEVE ================ */
     @GetMapping("/{id}")
-    public ResponseEntity<DTOEditorial> retrive(@PathVariable("id") Long id) throws Exception{
+    public ResponseEntity<DTOEditorial> retrive(@PathVariable("id") Long id){
         DTOEditorial result = service.retrieve(id);
         return ResponseEntity.ok().body(result);        
     }
 
-    @GetMapping() //el verbo es diferente a create ya que va
-    public ResponseEntity<List<DTOEditorial>> list(){
-        List<DTOEditorial> result  = service.list();
-        return ResponseEntity.ok().body(result);        
-    }
-
+    /* ================ UPDATE ================ */
     @PutMapping("/{id}")
-    public ResponseEntity<DTOEditorial> update(@RequestBody DTOEditorial DTOeditorial, @PathVariable("id") Long id) throws Exception{
-        DTOEditorial result = service.update(DTOeditorial, id);
+    public ResponseEntity<DTOEditorial> update(@RequestBody DTOEditorial dtoEditorial, @PathVariable("id") Long id) {
+        DTOEditorial result = service.update(dtoEditorial, id);
         return ResponseEntity.ok().body(result);
     }
 
+    /* ================ DELETE ================ */
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable("id") Long id) throws Exception{
+    public ResponseEntity<String> delete(@PathVariable("id") Long id) {
         service.delete(id);
         return ResponseEntity.ok().body("Editorial Eliminado!");        
     }
+
+    /* ================ LIST ================ */
+    @GetMapping("/{page}/{size}") //el verbo es diferente a create ya que va
+    public ResponseEntity<List<EditorialListDTO>> list(@PathVariable("page") int page, 
+    @PathVariable("size") int size,
+    @RequestParam(name = "sort", required = false) String sort){
+        List<EditorialListDTO> result  = service.list(page, size, sort);
+        return ResponseEntity.ok().body(result);        
+    }
+
+    /* ================ COUNT ================ */
+    @GetMapping("/count")
+    public ResponseEntity<Long> count(){
+        long result = service.count();
+        return ResponseEntity.ok().body(result);        
+    }
+    
 }

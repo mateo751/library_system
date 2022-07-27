@@ -24,7 +24,7 @@ public class NewUsuarioDTO {
     @NotNull(message = "Campo vacio")
     private String facultadUsr;
     @NotNull(message = "Campo vacio")
-    private String prodecionUsr;
+    private String profecionUsr;
     @NotNull(message = "Campo vacio")
     private String cargoUsr;
     @NotNull(message = "Campo vacio")

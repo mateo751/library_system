@@ -4,14 +4,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.library.system.librarysystem.dto.DTOPrestamo;
 import com.library.system.librarysystem.dto.NewPrestamoDTO;
+import com.library.system.librarysystem.dto.PrestamoListDTO;
+import com.library.system.librarysystem.exepciones.NoContentException;
 import com.library.system.librarysystem.exepciones.ResourceNotFoundException;
+import com.library.system.librarysystem.models.Libro;
 import com.library.system.librarysystem.models.Prestamo;
+import com.library.system.librarysystem.repositories.LibroRepository;
 import com.library.system.librarysystem.repositories.PrestamoRepository;
 import com.library.system.librarysystem.services.PrestamoService;
 
@@ -19,57 +22,78 @@ import com.library.system.librarysystem.services.PrestamoService;
 public class PrestamoServiceImpl implements PrestamoService{
     
     final ModelMapper modelMapper;
-    final PrestamoRepository prestamoRepository;
+    final PrestamoRepository repository;
+    final LibroRepository libroRepository;
 
-    @Autowired
-    public PrestamoServiceImpl(@Autowired PrestamoRepository repository, ModelMapper mapper){
-        this.prestamoRepository = repository;
-        this.modelMapper = mapper;
+   
+
+    public PrestamoServiceImpl (PrestamoRepository p, LibroRepository lr, ModelMapper m)
+    {
+        this.modelMapper = m;
+        this.repository = p;
+        this.libroRepository = lr;
     }
+
 
     @Override
     @Transactional
-    public DTOPrestamo create(NewPrestamoDTO DTOprestamo) {
-        Prestamo prestamo = modelMapper.map(DTOprestamo, Prestamo.class);
-        prestamoRepository.save(prestamo);
-        DTOPrestamo prestamoDTOCreated = modelMapper.map(prestamo, DTOPrestamo.class); 
-        return prestamoDTOCreated;
+    public DTOPrestamo create(Long idLibro, NewPrestamoDTO dtoPrestamo) {
+        Libro libro= libroRepository.findById(idLibro)
+            .orElseThrow(()-> new ResourceNotFoundException("Libro not found"));
+        Prestamo prestamo = modelMapper.map(dtoPrestamo, Prestamo.class);    
+        prestamo.setLibro(libro);
+        repository.save(prestamo);
+        return modelMapper.map(prestamo, DTOPrestamo.class); 
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public DTOPrestamo retrieve(Long id){
-        Prestamo prestamo = prestamoRepository.findById(id)
-        .orElseThrow(()-> new ResourceNotFoundException("Prestamo not found"));
+    @Transactional(readOnly=true)
+    public DTOPrestamo retrieve(Long idLibro, Long id) {
+        Libro libro = libroRepository.findById(idLibro)
+            .orElseThrow(()-> new ResourceNotFoundException("Libro not found"));
+            Prestamo prestamo = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Prestamo not found"));
+            prestamo.setLibro(libro);
         return modelMapper.map(prestamo, DTOPrestamo.class);
     }
 
     @Override
     @Transactional
-    public DTOPrestamo update(DTOPrestamo DTOprestamo, Long id)  {
-        Prestamo prestamo = prestamoRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("Prestamo not found"));
-        
-        prestamo.setId(id);
-        prestamo = modelMapper.map(DTOprestamo, Prestamo.class);
-        prestamoRepository.save(prestamo);       
-
+    public DTOPrestamo update(DTOPrestamo dtoPrestamo, Long idLibro, Long id) {
+        Libro libro = libroRepository.findById(idLibro)
+        .orElseThrow(()-> new ResourceNotFoundException("Libro not found"));
+        Prestamo prestamo = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Prestamo not found"));
+        prestamo = modelMapper.map(dtoPrestamo, Prestamo.class);
+        prestamo.setLibro(libro);
+        repository.save(prestamo);       
         return modelMapper.map(prestamo, DTOPrestamo.class);
     }
 
+
     @Override
     @Transactional
-    public void delete(Long id)  {
-        Prestamo prestamo = prestamoRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("Exam not found"));        
-        prestamoRepository.deleteById(prestamo.getId());        
+    public void delete(Long idLibro, Long id) {
+        Libro libro = libroRepository.findById(idLibro)
+        .orElseThrow(()-> new ResourceNotFoundException("Libro not found"));
+        Prestamo prestamo = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Prestamo not found"));
+        prestamo.setLibro(libro);
+        repository.deleteById(prestamo.getId());  
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public List<DTOPrestamo> list() {
-        List<Prestamo> prestamos = prestamoRepository.findAll();
-        return prestamos.stream().map(prestamo -> modelMapper.map(prestamo, DTOPrestamo.class))
+    @Transactional(readOnly=true)
+    public List<PrestamoListDTO> list(Long idLibro) {
+        Libro libro = libroRepository.findById(idLibro)
+            .orElseThrow(()-> new ResourceNotFoundException("Libro not found"));
+        List<Prestamo> prestamos = repository.findByLibro(libro);
+        if(prestamos.isEmpty()) throw new NoContentException("Prestamos is empty");
+        //Lambda ->
+        return prestamos.stream().map(l -> modelMapper.map(l, PrestamoListDTO.class) )
             .collect(Collectors.toList());
     }
+
+    @Override
+    public long count() {        
+        return libroRepository.count();
+    }
+
 }

@@ -17,11 +17,11 @@ public class NewLibroDTO {
     @NotNull(message = "El titulo no puede estar vacio")
     private String tituloLib;
     @NotNull(message = "La cantidad disponible no puede estar vacio")
-    private int cantidad_dispLib;
+    private int cantidadLib;
     @NotNull(message = "El año no puede estar vacio")
-    private String year_ediLib;
+    private String yearLib;
     @NotNull(message = "falta numero de paginas")
-    private int numero_pagLib;
+    private int numeroLib;
     @NotNull(message = "El formato no puede estar vacio")
     private String formatoLib;
     @NotNull(message = "El estante no puede estar vacio")
